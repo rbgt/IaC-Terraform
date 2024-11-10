@@ -9,6 +9,7 @@ permissions:
 jobs:
 
   Azure-test-connection:
+    environment: azure-sp-secrets
     runs-on: ubuntu-latest
     steps:
     - name: Azure Login
