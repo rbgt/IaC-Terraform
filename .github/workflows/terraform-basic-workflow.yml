@@ -14,9 +14,8 @@ jobs:
 
   initialize-terraform:
     runs-on: ubuntu-latest
-
-      steps:
-      - uses: actions/checkout@4
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Run a one-line script
         run: echo Hello, world!
