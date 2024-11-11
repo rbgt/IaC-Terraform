@@ -8,7 +8,7 @@ permissions:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  Azure-test-connection:
+  Terraform-Init-Plan:
     environment: azure-sp-secrets
     runs-on: ubuntu-latest
     steps:
@@ -20,22 +20,6 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
         enable-AzPSSession: true
     
-    - name: Azure CLI script
-      uses: azure/cli@v2
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az account show
-          # You can write your Azure CLI inline scripts here.
-
-    - name: Azure PowerShell script
-      uses: azure/powershell@v2
-      with:
-        azPSVersion: latest
-        inlineScript: |
-          Get-AzContext  
-          # You can write your Azure PowerShell inline scripts here.
-    
     - uses: actions/checkout@v4
 
     - name: Setup Terraform
@@ -44,4 +28,22 @@ jobs:
     - name: Terraform Init and Plan
       run: |
           terraform init -upgrade
-          terraform plan
+          terraform plan -out tf.plan
+  
+  Terraform-Apply:
+    environment: deployment-approval
+    runs-on: ubuntu-latest
+    needs: Terraform-Init-Plan
+    
+    steps:
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+        enable-AzPSSession: true
+    - uses: actions/checkout@v4
+
+    - run: terraform apply tf.plan
+          
