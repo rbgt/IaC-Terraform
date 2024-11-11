@@ -36,18 +36,18 @@ jobs:
           Get-AzContext  
           # You can write your Azure PowerShell inline scripts here.
 
-  # terraform-init:
-  #   runs-on: ubuntu-latest
+  terraform-init-plan:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: hashicorp/setup-terraform@v3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
 
-  #     - run: terraform init - upgrade
+      - run: terraform init - upgrade
 
-  #     - id: plan
-  #       run: terraform plan -no-color
+      - id: plan
+        run: terraform plan -no-color
   
-  #     - run: echo ${{ steps.plan.outputs.stdout }}
-  #     - run: echo ${{ steps.plan.outputs.stderr }}
-  #     - run: echo ${{ steps.plan.outputs.exitcode }}
+      - run: echo ${{ steps.plan.outputs.stdout }}
+      - run: echo ${{ steps.plan.outputs.stderr }}
+      - run: echo ${{ steps.plan.outputs.exitcode }}
