@@ -40,12 +40,7 @@ jobs:
 
     - name: Terraform Init and Plan
       uses: hashicorp/setup-terraform@v3
-
-    - run: terraform init -upgrade
-
-    - id: plan
-      run: terraform plan -no-color
-  
-    - run: echo ${{ steps.plan.outputs.stdout }}
-    - run: echo ${{ steps.plan.outputs.stderr }}
-    - run: echo ${{ steps.plan.outputs.exitcode }}
+      with:
+        inlineScript: |
+          terraform init -upgrade
+          terraform plan
