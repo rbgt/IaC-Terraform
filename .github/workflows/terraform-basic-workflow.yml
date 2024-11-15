@@ -19,8 +19,15 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
         enable-AzPSSession: true
-    
+
     - uses: actions/checkout@v4
+
+    - name: backend state configuration and environment variables
+      run: |
+        RESOURCE_GROUP_NAME="rg-shared"
+        STORAGE_ACCOUNT_NAME="tfstateblobproject"
+        ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
+        echo "export ARM_ACCESS_KEY=$ACCOUNT_KEY" >> $GITHUB_ENV
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
