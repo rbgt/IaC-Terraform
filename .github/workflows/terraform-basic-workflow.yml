@@ -71,6 +71,8 @@ jobs:
         name: terraform-plan
 
     - name: Terraform Init and Apply
+      env:
+        TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       run: | 
         terraform init \
           -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
