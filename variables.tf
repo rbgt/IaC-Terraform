@@ -21,3 +21,9 @@ variable "client_id" {
   default     = "e7ee42bd-aa24-44d5-b519-cdc467ed3cfd"
   description = "The Azure AD client ID."
 }
+
+variable "subscription_id" {
+  type        = string
+  default     = "f2b69101-46bb-4437-b7e3-4db306ddcd12"
+  description = "The Azure subscription ID."
+}
