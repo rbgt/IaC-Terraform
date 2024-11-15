@@ -11,6 +11,9 @@ jobs:
   Terraform-Init-Plan:
     environment: azure-sp-secrets
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
     - name: Azure Login
       uses: azure/login@v2
