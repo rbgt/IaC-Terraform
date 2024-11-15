@@ -6,8 +6,8 @@ terraform {
     key                  = "projectstate.tfstate"
     use_azuread_auth = true
     use_oidc = true
-    subscription_id = var.subscription_id
-    tenant_id = var.tenant_id
-    client_id = var.client_id
+    subscription_id = "f2b69101-46bb-4437-b7e3-4db306ddcd12"
+    tenant_id = "d0eabb3d-a232-4374-ac61-2c4f5849a522"
+    client_id = "e7ee42bd-aa24-44d5-b519-cdc467ed3cfd"
   }
 }

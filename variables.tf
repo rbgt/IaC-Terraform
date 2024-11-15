@@ -9,21 +9,3 @@ variable "resource_group_name_prefix" {
   default     = "rg"
   description = "Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription."
 }
-
-variable "tenant_id" {
-  type        = string
-  default     = "d0eabb3d-a232-4374-ac61-2c4f5849a522"
-  description = "The Azure AD tenant ID."
-}
-
-variable "client_id" {
-  type        = string
-  default     = "e7ee42bd-aa24-44d5-b519-cdc467ed3cfd"
-  description = "The Azure AD client ID."
-}
-
-variable "subscription_id" {
-  type        = string
-  default     = "f2b69101-46bb-4437-b7e3-4db306ddcd12"
-  description = "The Azure subscription ID."
-}
