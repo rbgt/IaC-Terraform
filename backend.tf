@@ -4,6 +4,7 @@ terraform {
     storage_account_name = "tfstateblobproject"
     container_name       = "tfstatecontainer"
     key                  = "projectstate.tfstate"
+    # Touchy part to authenticate with Azure and deploy the resources
     use_azuread_auth = true
     use_oidc = true
     subscription_id = "f2b69101-46bb-4437-b7e3-4db306ddcd12"
