@@ -35,7 +35,7 @@ jobs:
     - name: Terraform Init and Plan
       run: |
           terraform init
-          terraform plan -out tf.plan
+          terraform plan -out tfplanState
   
   Terraform-Apply:
     environment: deployment-approval
@@ -52,5 +52,5 @@ jobs:
         enable-AzPSSession: true
     - uses: actions/checkout@v4
 
-    - run: terraform apply tf.plan
+    - run: terraform apply tfplanState
           
