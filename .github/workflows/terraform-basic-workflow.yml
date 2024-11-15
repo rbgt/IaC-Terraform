@@ -65,7 +65,8 @@ jobs:
       with:
         name: terraform-plan
 
-    - run: | 
+    - name: Terraform Init and Apply
+      run: | 
         terraform init
         terraform apply tfplanState
           
