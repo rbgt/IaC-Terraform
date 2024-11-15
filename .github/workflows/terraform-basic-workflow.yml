@@ -11,9 +11,6 @@ jobs:
   Terraform-Init-Plan:
     environment: azure-sp-secrets
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
     steps:
     - name: Azure Login
       uses: azure/login@v2
@@ -37,7 +34,7 @@ jobs:
 
     - name: Terraform Init and Plan
       run: |
-          terraform init -upgrade
+          terraform init
           terraform plan -out tf.plan
   
   Terraform-Apply:
